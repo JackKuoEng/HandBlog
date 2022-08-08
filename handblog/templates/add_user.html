@@ -19,7 +19,7 @@
             <td>
                 {{ our_user.id }}. <a href="{{ 
                     url_for('users.update', id=our_user.id) }}">
-                {{ our_user.name }}</a> - {{ our_user.email }} - {{ our_user.favorite_song }} -
+                {{ our_user.name }}</a> - {{ our_user.email }} 
             </td>
         </tr>        
     {% endfor %}
@@ -67,20 +67,6 @@
         {% endif %}
         <br/>
 
-        {{ form.favorite_song.label(class="form-label") }}
-
-        {% if form.favorite_song.errors %}
-            {{ form.song(class="form-control form-control is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.song.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.favorite_song(class="form-control") }}
-        {% endif %}
-        
-        <br/>
         {{ form.password_hash.label(class="form-label") }}
 
         {% if form.password_hash.errors %}
@@ -121,7 +107,7 @@ table-borered table-striped">
             <td>
                 {{ our_user.id }}. 
                 <a href="{{ url_for('users.update', id=our_user.id) }}">{{ our_user.name }}</a> - {{ our_user.username }}
-                - {{ our_user.email }} - {{ our_user.favorite_song }} -
+                - {{ our_user.email }} 
             </td>
         </tr>
         
