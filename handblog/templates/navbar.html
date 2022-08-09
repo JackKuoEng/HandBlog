@@ -1,39 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
-          </li>
-          {% if current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('users.dashboard') }}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-            </li>
-            {% if current_user.id == 1 %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('users.admin') }}">Admin</a>
-              </li>
-            {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('posts.add_post') }}">Add</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
-            </li>
+<header class="site-header">
+<nav class="shadow-sm navbar navbar-expand-md navbar-light ">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav me-auto">
+        <a class="navbar-brand nav-link mr-4"  href="/">Hand Blog</a>
+      </div>
+      <div class="navbar-nav ">
+        <form method="GET" action="">
+          <div class="input-group ">
+            <div class="input-group">
+              <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search.." aria-label="Search keywords" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+          </div>
+          </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        {% if current_user.is_authenticated %}
+            <a id="profile" class="nav-item nav-link" href="{{ url_for('users.dashboard') }}">Profile</a>
+            <a id="logout" class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+          {% if current_user.id == 1 %}  
+              <a id="admin" class="nav-item nav-link" href="{{ url_for('users.admin') }}">Admin</a>  
           {% endif %}
-        </ul>
-        <form method="POST" action="{{ url_for('posts.search')}}" class="d-flex">
-          {{ form.hidden_tag() }}
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search", name="searched">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+            <a id="add_post" class="nav-item nav-link" href="{{ url_for('posts.add_post') }}">Add</a>
+        {% else %}
+            <a id="login" class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+            <a id="register" class="nav-item nav-link" href="{{ url_for('users.add_user') }}">Register</a>
+        {% endif %}
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+</header>

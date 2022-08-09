@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+	<br/>
     <h1 class="mb-3">{{ user.username }} ({{ posts.total }})</h1>
 	{% for message in get_flashed_messages() %}
 		<div class="alert alert-warning alert-dismissible fade show" role="alert">
