@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-	<br/>
-    <h1 class="mb-3">{{ user.username }} ({{ posts.total }})</h1>
 	{% for message in get_flashed_messages() %}
 		<div class="alert alert-warning alert-dismissible fade show" role="alert">
 		{{ message }}
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	{% endfor %}
-	
-	<br/>
 	{% for post in posts.items %}
 		<div class="shadow p-3 mb-5 bg-body rounded">
 			<div class="d-flex">
@@ -31,15 +27,14 @@
 					<p class="article-content">{{ post.content|safe }}</p>
 				</div>
 			</div>
-		<br/><br/>
+		<br/>
 		<a href="{{ url_for('posts.post', id=post.id)}}" class="btn btn-outline-secondary btn-sm">View</a>
 		{% if post.poster_id == current_user.id or current_user.id == 1 %}
 			<a href="{{ url_for('posts.edit_post', id=post.id)}}" class="btn btn-outline-secondary btn-sm">Edit</a>
 			<a href="{{ url_for('posts.delete_post', id=post.id)}}" class="btn btn-outline-danger btn-sm">Delete</a>
 		{% endif %}
-		<br/><br/>
+		<br/>
 		</div>
-	<br/>
 	{% endfor %}
 	{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 		{% if page_num %}
